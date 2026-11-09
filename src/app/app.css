@@ -33,4 +33,20 @@ button[type="submit"] { background-color: #10b981; }
 .tarjeta-estudiante {
   background-color: white; border: 1px solid #ccc;
   padding: 15px; margin-bottom: 10px; border-radius: 8px;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.tarjeta-editando {
+  border-color: #f59e0b;
+  background-color: #fffbeb;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
+}
+.etiqueta-editando {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: #f59e0b;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
 }
