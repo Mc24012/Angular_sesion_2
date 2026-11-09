@@ -26,9 +26,22 @@
   </section>
 
   <section class="contenido">
+<<<<<<< HEAD
     <!-- 2 mostrar estudiantes registrados -->
 
     <h2>Lista de Estudiantes ({{ estudiantes.length }})</h2>
+=======
+    <h2>Lista de Estudiantes</h2>
+    <!-- MODIFICACIÓN 5: Buscador -->
+<div class="buscador">
+  <input
+    type="text"
+    placeholder="Buscar estudiante..."
+    [(ngModel)]="textoBusqueda"
+    name="busqueda"
+  >
+</div>
+>>>>>>> 9be1b37 (Modificacion 5: Buscador de estudiantes)
     @if (estudiantes.length > 0) {
       @for (estudiante of estudiantes; track estudiante.id) {
         <div class="tarjeta-estudiante" [class.tarjeta-editando]="editando === estudiante.id">

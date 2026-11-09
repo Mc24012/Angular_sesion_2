@@ -1,23 +1,36 @@
 
-import  {Component, inject} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Estudiante } from './models/estudiante';
-//nuevas importaciones:
 import { FormsModule } from '@angular/forms';
 import { EstudianteService } from './services/estudiantes';
 
-@Component ({
+@Component({
   selector: 'app-root',
-  imports: [FormsModule],//añadimos el formsModule
+  imports: [FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App{
-  titulo : string = "Sistemas de Gestion Academica";
-  //modificamos todo el codigo que estaba acá
-private estudianteService = inject(EstudianteService);
+export class App {
+  titulo: string = "Sistemas de Gestion Academica";
+
+  private estudianteService = inject(EstudianteService);
   estudiantes = this.estudianteService.obtenerEstudiantes();
-  
-  nuevoEstudiante: Estudiante = { id: 0, nombre: '', correo: '', carrera: '', telefono: '' };
+
+  // MODIFICACIÓN 5: Variable del buscador
+  textoBusqueda: string = '';
+
+  nuevoEstudiante: Estudiante = {
+    id: 0, nombre: '', correo: '', carrera: '', telefono: ''
+  };
+
+  // MODIFICACIÓN 5: Filtrar estudiantes
+  filtrarEstudiantes(): Estudiante[] {
+    return this.estudiantes.filter(estudiante =>
+      estudiante.nombre.toLowerCase().includes(this.textoBusqueda.toLowerCase()) ||
+      estudiante.correo.toLowerCase().includes(this.textoBusqueda.toLowerCase()) ||
+      estudiante.carrera.toLowerCase().includes(this.textoBusqueda.toLowerCase())
+    );
+  }
 
   //id del estudiante que se está editando (null = ninguno)
   editando: number | null = null;
@@ -46,7 +59,13 @@ private estudianteService = inject(EstudianteService);
   }
 
   limpiarFormulario() {
+<<<<<<< HEAD
     this.nuevoEstudiante = { id: 0, nombre: '', correo: '', carrera: '', telefono: '' };
     this.editando = null; //apaga el resaltado
+=======
+    this.nuevoEstudiante = {
+      id: 0, nombre: '', correo: '', carrera: '', telefono: ''
+    };
+>>>>>>> 9be1b37 (Modificacion 5: Buscador de estudiantes)
   }
 }
