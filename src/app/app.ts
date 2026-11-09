@@ -19,6 +19,9 @@ private estudianteService = inject(EstudianteService);
   
   nuevoEstudiante: Estudiante = { id: 0, nombre: '', correo: '', carrera: '', telefono: '' };
 
+  //id del estudiante que se está editando (null = ninguno)
+  editando: number | null = null;
+
   guardarEstudiante() {
     if (this.nuevoEstudiante.id === 0) {
       this.estudianteService.agregarEstudiante({ ...this.nuevoEstudiante });
@@ -30,13 +33,20 @@ private estudianteService = inject(EstudianteService);
 
   seleccionarParaEditar(estudiante: Estudiante) {
     this.nuevoEstudiante = { ...estudiante };
+    this.editando = estudiante.id; //marca cuál se está editando
   }
 
   eliminar(id: number) {
     this.estudianteService.eliminarEstudiante(id);
+
+    //si eliminas el que estabas editando, limpia formulario y resaltado
+    if (this.editando === id) {
+      this.limpiarFormulario();
+    }
   }
 
   limpiarFormulario() {
     this.nuevoEstudiante = { id: 0, nombre: '', correo: '', carrera: '', telefono: '' };
+    this.editando = null; //apaga el resaltado
   }
 }
